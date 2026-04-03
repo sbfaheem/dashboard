@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#006600",
+              "background-light": "#f5f8f5",
+              "background-dark": "#0f230f",
+              "accent": "#d4af37",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display font-display antialiased">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 bg-white dark:bg-background-dark dark:border-primary/30 px-6 py-4 shadow-sm">
+<div class="flex items-center gap-4 text-primary dark:text-accent">
+<span class="material-symbols-outlined text-3xl">account_balance</span>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">FinDash</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9 hidden md:flex">
+<a class="text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-accent text-sm font-medium transition-colors" href="#">User Dashboard</a>
+<a class="text-primary dark:text-accent border-b-2 border-primary dark:border-accent text-sm font-bold pb-1" href="#">Admin Control Center</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-primary text-white hover:bg-primary/90 transition-colors text-sm font-bold shadow-md shadow-primary/20">
+<span class="material-symbols-outlined mr-2 text-[20px]">logout</span>
+<span>Logout</span>
+</button>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1200px] mx-auto px-6 py-8 flex flex-col gap-8">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b border-primary/10 dark:border-primary/20">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent text-3xl">admin_panel_settings</span>
+<h1 class="text-3xl font-bold tracking-tight">Admin Control Center</h1>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Manage system expenses, oversight, and comprehensive financial records.</p>
+</div>
+<div class="flex items-center bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-primary/10 dark:border-slate-700 p-1">
+<button class="px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded-md transition-colors">Overview</button>
+<button class="px-4 py-2 text-sm font-bold bg-primary/10 dark:bg-primary/20 text-primary dark:text-accent rounded-md">Expense Management</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-1 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-primary/10 dark:border-slate-700 p-6 flex flex-col h-fit">
+<h3 class="text-lg font-bold flex items-center gap-2 pb-4 mb-4 border-b border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-primary dark:text-accent">add_circle</span>
+                            Expense Entry Form
+                        </h3>
+<form class="flex flex-col gap-5">
+<label class="flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Expense Title</span>
+<input class="form-input rounded-lg border-primary/20 focus:border-primary focus:ring-primary dark:bg-slate-900 dark:border-slate-600 dark:text-white dark:focus:border-accent dark:focus:ring-accent" placeholder="e.g. Office Supplies" type="text"/>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Amount ($)</span>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500 material-symbols-outlined text-lg">attach_money</span>
+<input class="form-input rounded-lg border-primary/20 pl-10 w-full focus:border-primary focus:ring-primary dark:bg-slate-900 dark:border-slate-600 dark:text-white dark:focus:border-accent dark:focus:ring-accent" placeholder="0.00" type="number"/>
+</div>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Category</span>
+<select class="form-select rounded-lg border-primary/20 focus:border-primary focus:ring-primary dark:bg-slate-900 dark:border-slate-600 dark:text-white dark:focus:border-accent dark:focus:ring-accent">
+<option>Operational</option>
+<option>Marketing</option>
+<option>Travel</option>
+<option>Software</option>
+</select>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Date</span>
+<input class="form-input rounded-lg border-primary/20 focus:border-primary focus:ring-primary dark:bg-slate-900 dark:border-slate-600 dark:text-white dark:focus:border-accent dark:focus:ring-accent" type="date"/>
+</label>
+<div class="flex gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
+<button class="flex-1 bg-primary text-white py-2.5 rounded-lg font-bold hover:bg-primary/90 transition-colors shadow-sm flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-sm">save</span> Add Record
+                                </button>
+<button class="px-4 py-2.5 bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300 rounded-lg font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" type="button">
+                                    Clear
+                                </button>
+</div>
+</form>
+</div>
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-primary/10 dark:border-slate-700 flex flex-col gap-2">
+<div class="flex items-center justify-between text-slate-500 dark:text-slate-400">
+<span class="text-sm font-medium">Total Expenses</span>
+<span class="material-symbols-outlined text-primary/60 dark:text-accent/60">account_balance_wallet</span>
+</div>
+<span class="text-2xl font-bold text-slate-800 dark:text-white">$45,230.00</span>
+<span class="text-xs text-green-600 dark:text-green-400 flex items-center"><span class="material-symbols-outlined text-xs mr-1">trending_up</span> +2.4% this month</span>
+</div>
+<div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-primary/10 dark:border-slate-700 flex flex-col gap-2">
+<div class="flex items-center justify-between text-slate-500 dark:text-slate-400">
+<span class="text-sm font-medium">Pending Approvals</span>
+<span class="material-symbols-outlined text-primary/60 dark:text-accent/60">pending_actions</span>
+</div>
+<span class="text-2xl font-bold text-slate-800 dark:text-white">12</span>
+<span class="text-xs text-yellow-600 dark:text-yellow-400 flex items-center"><span class="material-symbols-outlined text-xs mr-1">schedule</span> Needs attention</span>
+</div>
+<div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-primary/10 dark:border-slate-700 flex flex-col gap-2">
+<div class="flex items-center justify-between text-slate-500 dark:text-slate-400">
+<span class="text-sm font-medium">Flagged Items</span>
+<span class="material-symbols-outlined text-red-500/60">flag</span>
+</div>
+<span class="text-2xl font-bold text-slate-800 dark:text-white">3</span>
+<span class="text-xs text-red-600 dark:text-red-400 flex items-center"><span class="material-symbols-outlined text-xs mr-1">error</span> Requires review</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-primary/10 dark:border-slate-700 flex flex-col flex-1">
+<div class="p-5 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+<h3 class="text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-accent">list_alt</span>
+                                    Recent Entries Management
+                                </h3>
+<div class="flex gap-2">
+<button class="p-1.5 text-slate-400 hover:text-primary dark:hover:text-accent transition-colors"><span class="material-symbols-outlined">filter_list</span></button>
+<button class="p-1.5 text-slate-400 hover:text-primary dark:hover:text-accent transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 uppercase text-xs">
+<tr>
+<th class="px-5 py-3 font-semibold">Title</th>
+<th class="px-5 py-3 font-semibold">Category</th>
+<th class="px-5 py-3 font-semibold">Date</th>
+<th class="px-5 py-3 font-semibold">Amount</th>
+<th class="px-5 py-3 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-700/50 text-slate-700 dark:text-slate-300">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-5 py-4 font-medium">Q3 Server Hosting</td>
+<td class="px-5 py-4"><span class="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 px-2 py-1 rounded text-xs font-medium">Software</span></td>
+<td class="px-5 py-4">Oct 24, 2023</td>
+<td class="px-5 py-4 font-semibold text-slate-900 dark:text-slate-100">$1,250.00</td>
+<td class="px-5 py-4 text-right flex justify-end gap-2">
+<button class="p-1 text-slate-400 hover:text-primary dark:hover:text-accent" title="Edit"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-1 text-slate-400 hover:text-red-500" title="Delete"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-5 py-4 font-medium">Annual Team Retreat</td>
+<td class="px-5 py-4"><span class="bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 px-2 py-1 rounded text-xs font-medium">Operational</span></td>
+<td class="px-5 py-4">Oct 20, 2023</td>
+<td class="px-5 py-4 font-semibold text-slate-900 dark:text-slate-100">$4,500.00</td>
+<td class="px-5 py-4 text-right flex justify-end gap-2">
+<button class="p-1 text-slate-400 hover:text-primary dark:hover:text-accent" title="Edit"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-1 text-slate-400 hover:text-red-500" title="Delete"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-5 py-4 font-medium">Facebook Ads Campaign</td>
+<td class="px-5 py-4"><span class="bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300 px-2 py-1 rounded text-xs font-medium">Marketing</span></td>
+<td class="px-5 py-4">Oct 18, 2023</td>
+<td class="px-5 py-4 font-semibold text-slate-900 dark:text-slate-100">$850.00</td>
+<td class="px-5 py-4 text-right flex justify-end gap-2">
+<button class="p-1 text-slate-400 hover:text-primary dark:hover:text-accent" title="Edit"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-1 text-slate-400 hover:text-red-500" title="Delete"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-5 py-4 font-medium">New Office Chairs</td>
+<td class="px-5 py-4"><span class="bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300 px-2 py-1 rounded text-xs font-medium">Operational</span></td>
+<td class="px-5 py-4">Oct 15, 2023</td>
+<td class="px-5 py-4 font-semibold text-slate-900 dark:text-slate-100">$600.00</td>
+<td class="px-5 py-4 text-right flex justify-end gap-2">
+<button class="p-1 text-slate-400 hover:text-primary dark:hover:text-accent" title="Edit"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-1 text-slate-400 hover:text-red-500" title="Delete"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-slate-100 dark:border-slate-700 flex justify-center">
+<button class="text-sm font-semibold text-primary dark:text-accent hover:underline">View All Entries</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
