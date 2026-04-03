@@ -1,5 +1,7 @@
 import { fetchMonthlyReport } from "../../actions";
 import Link from "next/link";
+import ExpenseTables from "../components/ExpenseTables";
+import ExpenseCharts from "../components/ExpenseCharts";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -120,59 +122,10 @@ export default async function Home({ searchParams }) {
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
-          <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-primary/10 overflow-hidden">
-              <div className="px-6 py-4 bg-primary/5 border-b border-primary/10 flex items-center justify-between">
-                <h3 className="font-bold">Operational Expenses</h3>
-                <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded font-bold uppercase">Fixed Expenses</span>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left">
-                  <thead className="text-xs font-bold text-slate-400 uppercase bg-slate-50 dark:bg-slate-900/50">
-                    <tr>
-                      <th className="px-6 py-3">Description</th>
-                      <th className="px-6 py-3 text-right">Amount (PKR)</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-primary/5">
-                    {report.fixedExpenses.map((exp) => (
-                      <tr key={exp.id} className="hover:bg-primary/5 transition-colors">
-                        <td className="px-6 py-4 text-sm font-medium">{exp.description}</td>
-                        <td className="px-6 py-4 text-sm font-bold text-right">{formatPKR(Number(exp.amount))}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-primary/10 overflow-hidden">
-              <div className="px-6 py-4 bg-secondary-gold/10 border-b border-secondary-gold/20 flex items-center justify-between">
-                <h3 className="font-bold">Miscellaneous Expenses</h3>
-                <span className="text-xs bg-secondary-gold/20 text-secondary-gold px-2 py-1 rounded font-bold uppercase">Variable Expenes</span>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left">
-                  <thead className="text-xs font-bold text-slate-400 uppercase bg-slate-50 dark:bg-slate-900/50">
-                    <tr>
-                      <th className="px-6 py-3">Description</th>
-                      <th className="px-6 py-3 text-right">Amount (PKR)</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-primary/5">
-                     {report.variableExpenses.map((exp) => (
-                      <tr key={exp.id} className="hover:bg-primary/5 transition-colors">
-                        <td className="px-6 py-4 text-sm font-medium text-purple-600 dark:text-purple-400">{exp.description}</td>
-                        <td className="px-6 py-4 text-sm font-bold text-right">{formatPKR(Number(exp.amount))}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+          <ExpenseTables fixedExpenses={report.fixedExpenses} variableExpenses={report.variableExpenses} />
 
           <div className="space-y-6">
+            <ExpenseCharts fixedTotal={totalFixed} variableTotal={totalVariable} />
             <div className="bg-primary/5 dark:bg-primary/10 p-6 rounded-2xl border border-primary/20">
               <h4 className="font-bold text-primary mb-4 flex items-center gap-2">
                 <span className="material-symbols-outlined">notes</span> Notes

@@ -76,3 +76,18 @@ export async function addVariableExpense(formData) {
   if (error) throw error
   return data
 }
+
+export async function deleteExpense(tableName, id) {
+  const { error } = await supabase.from(tableName).delete().eq('id', id);
+  if (error) throw new Error("Failed to delete expense");
+}
+
+export async function fetchAllReports() {
+  const { data, error } = await supabase
+    .from('monthly_reports')
+    .select('id, month_year, opening_balance, monthly_collection')
+    .order('month_year', { ascending: true });
+    
+  if (error) return [];
+  return data || [];
+}
