@@ -1,27 +1,22 @@
 import { fetchMonthlyReport } from "../../actions";
+import Link from "next/link";
 
-export default async function Home() {
-  // Try to load the March 2026 report
-  let report = await fetchMonthlyReport("2026-03").catch(() => null);
+export default async function Home({ searchParams }) {
+  // Await search params specifically for Next 15 compatibility
+  const params = await searchParams;
+  const currentMonth = params?.month || "2026-03";
 
-  // If DB not setup or report not created, use placeholders matching original sheet
+  // Try to load the report for the requested month
+  let report = await fetchMonthlyReport(currentMonth).catch(() => null);
+
+  // If DB not setup or report not created, use empty placeholders
   if (!report) {
     report = {
-      month_year: "2026-03",
-      opening_balance: 32830,
-      monthly_collection: 283250,
-      fixedExpenses: [
-        { id: 1, description: "Security Expense", amount: 210000 },
-        { id: 2, description: "Electrician Charges", amount: 8000 },
-        { id: 3, description: "Sweeper Salary", amount: 20000 },
-        { id: 4, description: "Sweeper Accessories", amount: 6200 },
-        { id: 5, description: "Electrical Accessories", amount: 14765 },
-        { id: 6, description: "Park", amount: 3530 },
-      ],
-      variableExpenses: [
-        { id: 7, description: "Miscellaneous Expenses", amount: 6800 },
-        { id: 8, description: "Gutter Cleaned", amount: 5000 },
-      ]
+      month_year: currentMonth,
+      opening_balance: 0,
+      monthly_collection: 0,
+      fixedExpenses: [],
+      variableExpenses: []
     }
   }
 
@@ -67,7 +62,12 @@ export default async function Home() {
               MONTHLY EXPENSE SHEET 
               <span className="text-primary bg-primary/10 px-3 py-1 rounded-lg border border-primary/20">{report.month_year}</span>
             </h1>
-            <p className="text-slate-500 dark:text-slate-400 font-medium pt-2">Detailed financial overview for the current billing cycle. UUID: {report.id || 'N/A'}</p>
+            <p className="text-slate-500 dark:text-slate-400 font-medium pt-2">Detailed financial overview for the current billing cycle. UUID: {report.id || 'Pending Database Entry'}</p>
+          </div>
+          <div className="flex items-center bg-white dark:bg-slate-800 rounded-lg p-1 border border-primary/10 shadow-sm">
+            <Link href="/?month=2026-01" className={`text-sm font-bold px-5 py-2 rounded-md transition-colors ${currentMonth === '2026-01' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-primary hover:bg-primary/5'}`}>JAN 2026</Link>
+            <Link href="/?month=2026-02" className={`text-sm font-bold px-5 py-2 rounded-md transition-colors ${currentMonth === '2026-02' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-primary hover:bg-primary/5'}`}>FEB 2026</Link>
+            <Link href="/?month=2026-03" className={`text-sm font-bold px-5 py-2 rounded-md transition-colors ${currentMonth === '2026-03' ? 'bg-primary text-white shadow-sm' : 'text-slate-500 hover:text-primary hover:bg-primary/5'}`}>MARCH 2026</Link>
           </div>
         </div>
 
